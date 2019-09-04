@@ -31,8 +31,7 @@ class App extends React.Component {
               id: snapshot.id,
               ...snapshot.data()
             }
-          },()=>console.log('userAuth===>',this.state.currentUser)
-          )
+          })
         })
       }
       this.setState({currentUser : userAuth});
