@@ -9,7 +9,7 @@ import {HomePage} from './pages/homepage/homepage.components';
 import ShopPage from './pages/shop/shop.component';
 import Header from './components/header/header.component';
 import SignInSignUp from './components/sign-in-and-sign-up/sign-in-and-sign-up.component';
-import {auth, createUserProfileDocument} from './firebase/firebase.utils';
+import {auth, createUserProfileDocument } from './firebase/firebase.utils';
 import {setCurrentUser} from './redux/user/user.action';
 import {selectCurrentUser} from './redux/user/user.selector';
 import CheckoutPage from './pages/checkout/checkout.component';
@@ -33,7 +33,7 @@ class App extends React.Component {
         })
       }
       setCurrentUser(userAuth);
-      
+      //addCollectionAndDocument('collections', collectionArray.map(({title, items}) => ({title, items})));
     })
   }
 
