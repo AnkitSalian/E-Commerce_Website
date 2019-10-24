@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Switch ,Route, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
@@ -13,20 +13,13 @@ import {selectCurrentUser} from './redux/user/user.selector';
 import {checkUserSession} from './redux/user/user.action';
 import CheckoutPage from './pages/checkout/checkout.component';
 
-class App extends React.Component {
+const App = ({checkUserSession, currentUser}) => {
 
-  unSubscribeFromAuth = null;
-
-  componentDidMount(){
-    const {checkUserSession} = this.props;
+  
+  useEffect(() => {
     checkUserSession();
-  }
-
-  componentWillUnmount(){
-    this.unSubscribeFromAuth();
-  }
-
-  render(){
+  },[checkUserSession])
+  
     return (
       <div className="App">
         <Header />
@@ -35,7 +28,7 @@ class App extends React.Component {
           <Route path='/shop' component={ShopPage} />
           <Route exact path='/checkout' component={CheckoutPage} />
           <Route exact path='/signin' render ={()=>(
-            this.props.currentUser ? (
+            currentUser ? (
               <Redirect to="/" />
             ) :(
               <SignInSignUp />
@@ -44,7 +37,7 @@ class App extends React.Component {
         </Switch>
       </div>
     );
-  }
+  
   
 }
 
